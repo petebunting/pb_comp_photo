@@ -1,2 +1,3 @@
-# pb_comp_photo
+# PB's Computational Photography Module
+
 Python functions for computational photography
