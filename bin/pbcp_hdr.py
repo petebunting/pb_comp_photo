@@ -29,10 +29,10 @@
 import argparse
 import sys
 
+import pb_comp_photo
+import pb_comp_photo.hdr
 import pb_comp_photo.io
 import pb_comp_photo.utils
-import pb_comp_photo.hdr
-import pb_comp_photo
 
 if __name__ == "__main__":
     """

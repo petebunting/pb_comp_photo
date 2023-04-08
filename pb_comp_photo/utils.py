@@ -28,7 +28,8 @@
 
 import math
 
-def calc_ev(fnumber:float, exposure_time:float):
+
+def calc_ev(fnumber: float, exposure_time: float):
     """
     Calculate the exposure value (EV) for a given ISO based on the
     f-stop and shutter time.
@@ -38,10 +39,10 @@ def calc_ev(fnumber:float, exposure_time:float):
     :return: the exposure value (EV)
 
     """
-    return math.log2((fnumber*fnumber)/exposure_time)
+    return math.log2((fnumber * fnumber) / exposure_time)
 
 
-def calc_ev_iso100(fnumber:float, exposure_time:float, iso:float):
+def calc_ev_iso100(fnumber: float, exposure_time: float, iso: float):
     """
     Calculate exposure value (EV) standardised to ISO 100 based
     on the f-stop, shutter time and ISO for the photo.
@@ -53,9 +54,10 @@ def calc_ev_iso100(fnumber:float, exposure_time:float, iso:float):
 
     """
     ev = calc_ev(fnumber, exposure_time)
-    return ev - math.log2(iso/100)
+    return ev - math.log2(iso / 100)
 
-def calc_exposure_time(fnumber:float, ev:float):
+
+def calc_exposure_time(fnumber: float, ev: float):
     """
     Calculate an exposure time for a given exposure value (EV) and f-stop.
 
@@ -64,4 +66,4 @@ def calc_exposure_time(fnumber:float, ev:float):
     :return: exposure time in seconds
 
     """
-    return (fnumber*fnumber) / math.pow(2, ev)
+    return (fnumber * fnumber) / math.pow(2, ev)

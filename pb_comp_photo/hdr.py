@@ -29,6 +29,7 @@
 import cv2
 import numpy
 
+
 def create_hdr_debevec_img(cv_img_objs, exposure_times, output_img, gamma=1.8):
     """
 
@@ -47,7 +48,7 @@ def create_hdr_debevec_img(cv_img_objs, exposure_times, output_img, gamma=1.8):
     tone_map = cv2.createTonemap(gamma=gamma)
     res_debevec = tone_map.process(hdr_debevec.copy())
 
-    res_debevec_8bit = numpy.clip(res_debevec * 255, 0, 255).astype('uint8')
+    res_debevec_8bit = numpy.clip(res_debevec * 255, 0, 255).astype("uint8")
     cv2.imwrite(output_img, res_debevec_8bit)
 
 
@@ -55,18 +56,21 @@ def create_hdr_robertson_img(cv_img_objs, exposure_times, output_img, gamma=1.8)
     exposure_times_arr = numpy.array(exposure_times)
 
     merge_robertson = cv2.createMergeRobertson()
-    hdr_robertson = merge_robertson.process(cv_img_objs, times=exposure_times_arr.copy())
+    hdr_robertson = merge_robertson.process(
+        cv_img_objs, times=exposure_times_arr.copy()
+    )
 
     # Tonemap HDR image
     tone_map = cv2.createTonemap(gamma=gamma)
     res_robertson = tone_map.process(hdr_robertson.copy())
 
-    res_robertson_8bit = numpy.clip(res_robertson * 255, 0, 255).astype('uint8')
+    res_robertson_8bit = numpy.clip(res_robertson * 255, 0, 255).astype("uint8")
     cv2.imwrite(output_img, res_robertson_8bit)
+
 
 def create_hdr_mertens_img(cv_img_objs, output_img):
     merge_mertens = cv2.createMergeMertens()
     res_mertens = merge_mertens.process(cv_img_objs)
 
-    res_mertens_8bit = numpy.clip(res_mertens*255, 0, 255).astype('uint8')
+    res_mertens_8bit = numpy.clip(res_mertens * 255, 0, 255).astype("uint8")
     cv2.imwrite(output_img, res_mertens_8bit)

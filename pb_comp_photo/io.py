@@ -27,9 +27,11 @@
 ##########################################################################
 
 import os
+
 import exifread
 
-def read_img_opencv(input_imgs:list[str], read_meta:bool=True):
+
+def read_img_opencv(input_imgs: list[str], read_meta: bool = True):
     """
 
     :param input_imgs:
@@ -37,6 +39,7 @@ def read_img_opencv(input_imgs:list[str], read_meta:bool=True):
     :return:
     """
     import cv2
+
     img_obj_lst = list()
     exif_table = list()
     for img_file in input_imgs:
@@ -48,10 +51,15 @@ def read_img_opencv(input_imgs:list[str], read_meta:bool=True):
         if read_meta:
             lcl_exif_table = dict()
             lcl_exif_table["image file"] = img_file
-            exif_img_obj = open(img_file, 'rb')
+            exif_img_obj = open(img_file, "rb")
             tags = exifread.process_file(exif_img_obj)
             for tag in tags.keys():
-                if tag not in ('JPEGThumbnail', 'TIFFThumbnail', 'Filename', 'EXIF MakerNote'):
+                if tag not in (
+                    "JPEGThumbnail",
+                    "TIFFThumbnail",
+                    "Filename",
+                    "EXIF MakerNote",
+                ):
                     if "ISOSpeedRatings" in tag:
                         lcl_exif_table["ISO"] = int(f"{tags[tag]}")
                     elif "ExposureTime" in tag:
